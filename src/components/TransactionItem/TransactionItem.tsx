@@ -1,22 +1,17 @@
-import css from './TransactionItem.module.css';
-import PropTypes from 'prop-types';
+import { Transaction } from "../../types/types";
+import css from "./TransactionItem.module.scss";
 
-const TransactionItem = ({ item }) => {
-  const { type, amount, currency } = item;
-  return (
-    <tr className={css.transItemRow}>
-      <td>{type}</td>
-      <td>{amount}</td>
-      <td>{currency}</td>
-    </tr>
-  );
-};
+type Props = { item: Transaction };
 
-TransactionItem.propTypes = {
-  id: PropTypes.string,
-  type: PropTypes.string,
-  amount: PropTypes.string,
-  currency: PropTypes.string,
+const TransactionItem = ({ item }: Props) => {
+	const { type, amount, currency } = item;
+	return (
+		<tr className={css.transItemRow}>
+			<td>{type}</td>
+			<td>{amount}</td>
+			<td>{currency}</td>
+		</tr>
+	);
 };
 
 export default TransactionItem;

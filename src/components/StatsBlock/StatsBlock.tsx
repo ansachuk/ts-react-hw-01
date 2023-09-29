@@ -1,23 +1,19 @@
-import PropTypes from 'prop-types';
-import css from './StatsBlock.module.css';
+import css from "./StatsBlock.module.scss";
 
-const StatsBlock = ({ statsLabel, quantity, bordered, bgColor }) => {
-  return (
-    <li
-      style={{ backgroundColor: bgColor }}
-      className={`${css.statsItem} ${bordered && css.bordered}`}
-    >
-      <span className={css.label}>{statsLabel}</span>
-      <span className={css.quantity}>{quantity}</span>
-    </li>
-  );
+type Props = {
+	statsLabel: string;
+	quantity: number;
+	bordered?: boolean;
+	bgColor?: string;
 };
 
-StatsBlock.propTypes = {
-  statsLabel: PropTypes.string,
-  quantity: PropTypes.number,
-  bordered: PropTypes.bool,
-  bgColor: PropTypes.string,
+const StatsBlock = ({ statsLabel, quantity, bordered, bgColor }: Props) => {
+	return (
+		<li style={{ backgroundColor: bgColor }} className={`${css.statsItem} ${bordered && css.bordered}`}>
+			<span className={css.label}>{statsLabel}</span>
+			<span className={css.quantity}>{quantity}</span>
+		</li>
+	);
 };
 
 export default StatsBlock;

@@ -1,24 +1,27 @@
-import StatsBlock from 'components/StatsBlock/StatsBlock';
-import css from './Statistics.module.css';
-import getRandomHexColor from 'utils/getRandomHexColor';
+import StatsBlock from "../StatsBlock/StatsBlock";
 
-const Statistics = ({ stats, title }) => {
-  return (
-    <section className={css.statistics}>
-      {title && <h2 className={css.title}>{title}</h2>}
+import { Data } from "../../types/types";
 
-      <ul className={css.statList}>
-        {stats.default.map(item => (
-          <StatsBlock
-            key={item.id}
-            statsLabel={item.label}
-            quantity={item.percentage}
-            bgColor={getRandomHexColor()}
-          ></StatsBlock>
-        ))}
-      </ul>
-    </section>
-  );
+import getRandomHexColor from "../../utils/getRandomHexColor";
+import css from "./Statistics.module.scss";
+
+type Props = {
+	stats: Data[];
+	title: string;
+};
+
+const Statistics = ({ stats, title }: Props) => {
+	return (
+		<section className={css.statistics}>
+			{title && <h2 className={css.title}>{title}</h2>}
+
+			<ul className={css.statList}>
+				{stats.map(item => (
+					<StatsBlock key={item.id} statsLabel={item.label} quantity={item.percentage} bgColor={getRandomHexColor()}></StatsBlock>
+				))}
+			</ul>
+		</section>
+	);
 };
 
 export default Statistics;

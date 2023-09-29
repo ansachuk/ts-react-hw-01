@@ -1,20 +1,18 @@
-import PropTypes from 'prop-types';
-import css from './FriendList.module.css';
-import FriendItem from '../FriendItem/FriendItem';
+import { Friend } from "../../types/types";
+import FriendItem from "../FriendItem/FriendItem";
 
-const FriendList = ({ friends }) => {
-  console.log(friends);
-  return (
-    <ul className={css.friendList}>
-      {friends.default.map(friend => (
-        <FriendItem key={friend.id} friend={friend} />
-      ))}
-    </ul>
-  );
-};
+import css from "./FriendList.module.scss";
 
-FriendList.propTypes = {
-  friends: PropTypes.object,
+type Props = { friends: Friend[] };
+
+const FriendList = ({ friends }: Props) => {
+	return (
+		<ul className={css.friendList}>
+			{friends.map(friend => (
+				<FriendItem key={friend.id} friend={friend} />
+			))}
+		</ul>
+	);
 };
 
 export default FriendList;

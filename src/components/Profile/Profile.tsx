@@ -1,38 +1,27 @@
-import PropTypes from 'prop-types';
-import css from './Profile.module.css';
-import StatsBlock from 'components/StatsBlock/StatsBlock';
+import { User } from "../../types/types";
+import StatsBlock from "../StatsBlock/StatsBlock";
 
-const Profile = props => {
-  const { username, tag, location, avatar, stats } = props.data;
+import css from "./Profile.module.scss";
 
-  return (
-    <div className={css.profile}>
-      <div className={css.description}>
-        <img src={avatar} alt="User avatar" className={css.avatar} />
-        <p className={css.name}>{username}</p>
-        <p className={css.tag}>@{tag}</p>
-        <p className={css.location}>{location}</p>
-      </div>
+type Props = { user: User };
 
-      <ul className={css.stats}>
-        {Object.keys(stats).map(key => (
-          <StatsBlock
-            key={key}
-            statsLabel={key}
-            quantity={stats[key]}
-            bordered={true}
-          ></StatsBlock>
-        ))}
-      </ul>
-    </div>
-  );
-};
+export default function Profile({ user }: Props) {
+	const { username, tag, location, avatar, stats } = user;
 
-Profile.propTypes = {
-  username: PropTypes.string,
-  tag: PropTypes.string,
-  location: PropTypes.string,
-  avatar: PropTypes.string,
-};
+	return (
+		<div className={css.profile}>
+			<div className={css.description}>
+				<img src={avatar} alt="User avatar" className={css.avatar} />
+				<p className={css.name}>{username}</p>
+				<p className={css.tag}>@{tag}</p>
+				<p className={css.location}>{location}</p>
+			</div>
 
-export default Profile;
+			<ul className={css.stats}>
+				{Object.keys(stats).map(key => (
+					<StatsBlock key={key} statsLabel={key} quantity={stats[key as keyof typeof stats]} bordered={true} />
+				))}
+			</ul>
+		</div>
+	);
+}
