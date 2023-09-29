@@ -1,0 +1,17 @@
+.transItemRow {
+  background-color: rgb(249, 249, 249);
+  text-align: center;
+}
+
+.transItemRow:nth-child(2n) {
+  background-color: rgb(208, 208, 208);
+}
+
+.transItemRow td {
+  align-items: center;
+  padding: 15px;
+}
+
+.transItemRow td:first-child {
+  text-transform: capitalize;
+}
